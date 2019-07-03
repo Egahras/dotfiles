@@ -1,13 +1,22 @@
 "" Vim Config by Mike Sarhage
 
 "" Basic Settings
-set encoding=utf-8 nobomb       " Zse UTF-8 without BOM
+set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 
 set nocompatible
 
+" Disable arrow movement, resize splits instead.
+let g:elite_mode=1
+
+if get(g:, 'elite_mode')
+    nnoremap <Up>    :resize +2<CR>
+    nnoremap <Down>  :resize -2<CR>
+    nnoremap <Left>  :vertical resize +2<CR>
+    nnoremap <Right> :vertical resize -2<CR>
+endif
+
 " enable syntax and plugins (for netrw)
 syntax enable
-
 
 if has("autocmd")
     filetype plugin indent on
@@ -34,6 +43,9 @@ set cursorline
 " Auto indenting
 set autoindent
 
+" Show Current file name
+set statusline=2
+
 "" FINDING FILES:
 
 " Search down into subfolders
@@ -44,6 +56,7 @@ set path+=**
 set wildmenu
 
 "" File Browsing
+let g:netrw_banner=0	" disable huge banner
 let g:netrw_liststyle=3 " tree view
 
 " Tabs -> 4 Spaces
@@ -77,6 +90,8 @@ Plug 'Valloric/YouCompleteMe'		" completion for everything!!!
 Plug 'tobyS/pdv'					" php documentor -> used by <C-p>
 Plug 'tobyS/vmustache'				" required by tobyS/pdv
 Plug 'SirVer/ultisnips'				" required by tobyS/pdv
+Plug 'vim-vdebug/vdebug'			" debug in vim - amazing
+Plug 'vim-airline/vim-airline'		" better statusline
 " Initialize plugin system
 call plug#end()
 
