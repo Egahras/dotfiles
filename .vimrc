@@ -18,6 +18,10 @@ endif
 " enable syntax and plugins (for netrw)
 syntax enable
 
+" colorsheme that should be used.
+" colorscheme molokai
+colorscheme magicka
+
 if has("autocmd")
     filetype plugin indent on
     "           │     │    └──── Enable file type detection
