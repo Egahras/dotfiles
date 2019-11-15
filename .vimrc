@@ -19,8 +19,8 @@ endif
 syntax enable
 
 " colorsheme that should be used.
-" colorscheme molokai
-colorscheme magicka
+colorscheme molokai
+" colorscheme magicka
 
 if has("autocmd")
     filetype plugin indent on
@@ -47,6 +47,11 @@ set cursorline
 " Auto indenting
 set autoindent
 
+" Tabs -> 4 Spaces
+set tabstop=4
+set shiftwidth=4
+"set expandtab					if this is activated tabs will be replaced by whiteSpaces
+
 " Show Current file name
 set statusline=2
 
@@ -63,17 +68,11 @@ set wildmenu
 let g:netrw_banner=0	" disable huge banner
 let g:netrw_liststyle=3 " tree view
 
-" Tabs -> 4 Spaces
-" <C t> shift line to the right by 1 tab
-" <C d> shift line to the left by 1 tab
-set tabstop=4
-set shiftwidth=4
-"set expandtab					if this is activated tabs will be replaced by whiteSpaces
-
 "" Mappings
 " jump to Definition of Tag
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
+
 " moving splits with ctrl + h,j,k,l
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -90,17 +89,20 @@ call plug#begin('~/.vim/plugged')
 " " Make sure you use single quotes
 
 Plug 'tpope/vim-commentary'			" Comment out with 'gc' or 'gcc'
-Plug 'Valloric/YouCompleteMe'		" completion for everything!!!
-Plug 'tobyS/pdv'					" php documentor -> used by <C-p>
-Plug 'tobyS/vmustache'				" required by tobyS/pdv
-Plug 'SirVer/ultisnips'				" required by tobyS/pdv
-Plug 'vim-vdebug/vdebug'			" debug in vim - amazing
+Plug 'mhinz/vim-signify'			" Highlight changes since last commit
 Plug 'vim-airline/vim-airline'		" better statusline
+Plug 'sheerun/vim-polyglot'			" Language Pack for indentation
+
 " Initialize plugin system
 call plug#end()
+" " deactivated Plugins
+" Plug 'Valloric/YouCompleteMe'		" completion for everything!!!
+" Plug 'tobyS/pdv'					" php documentor -> used by <C-p>
+" Plug 'tobyS/vmustache'				" required by tobyS/pdv
+" Plug 'SirVer/ultisnips'				" required by tobyS/pdv
+" Plug 'vim-vdebug/vdebug'			" debug in vim - amazing
 
-
-"" PHP Documentor COnfiguration
+"" PHP Documentor Configuration
 "" tobyS/pdv
-let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+" let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+" nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
