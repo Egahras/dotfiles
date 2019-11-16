@@ -1,5 +1,4 @@
 "" Vim Config by Mike Sarhage
-
 "" Basic Settings
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 
@@ -85,24 +84,38 @@ map <C-l> <C-W>l
 " " - For Neovim: ~/.local/share/nvim/plugged
 " " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-"
-" " Make sure you use single quotes
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	" Use release branch (Recommend)
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	
+	" Or latest tag
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+	" Or build from source code by use yarn: https://yarnpkg.com
+	Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-Plug 'tpope/vim-commentary'			" Comment out with 'gc' or 'gcc'
-Plug 'mhinz/vim-signify'			" Highlight changes since last commit
-Plug 'vim-airline/vim-airline'		" better statusline
-Plug 'sheerun/vim-polyglot'			" Language Pack for indentation
-
-" Initialize plugin system
 call plug#end()
-" " deactivated Plugins
-" Plug 'Valloric/YouCompleteMe'		" completion for everything!!!
-" Plug 'tobyS/pdv'					" php documentor -> used by <C-p>
-" Plug 'tobyS/vmustache'				" required by tobyS/pdv
-" Plug 'SirVer/ultisnips'				" required by tobyS/pdv
-" Plug 'vim-vdebug/vdebug'			" debug in vim - amazing
 
-"" PHP Documentor Configuration
-"" tobyS/pdv
-" let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-" nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+	" coc.vim configurations to make it even better.
+	" Some servers have issues with backup files, see #649
+	set nobackup
+	set nowritebackup
+
+	" Better display for messages
+	set cmdheight=2
+	" You will have bad experience for diagnostic messages when it's default 4000.
+	set updatetime=300
+" Use tab for trigger completion with characters ahead and navigate.
+	" Use command ':verbose imap <tab>' to make sure tab is not mapped by other
+	" plugin.
+	inoremap <silent><expr> <TAB>
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
+		\ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
