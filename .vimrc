@@ -1,5 +1,5 @@
-"" Vim Config by Mike Sarhage
-"" Basic Settings
+" Vim Config by Mike Sarhage
+" Basic Settings
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 
 set nocompatible
